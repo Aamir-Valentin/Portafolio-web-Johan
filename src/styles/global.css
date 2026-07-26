@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+:root {
+    --swiper-navigation-color: #1e293b; /* slate-800 */
+    --swiper-pagination-color: #1e293b; /* slate-800 */
+  }

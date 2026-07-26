@@ -1,11 +1,307 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import "../styles/global.css";
+import { Image } from "astro:assets";
+import Layout from "../layouts/Layout.astro";
+// Swiper
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+// Iconos
+import IconGmail from '../components/icons/icon_gmail.astro';
+import IconLinkedin from '../components/icons/icon_linkedin.astro';
+import IconCredly from '../components/icons/icon_credly.astro';
+// Mockups
+import vbp_pc from "../assets/img/mockups/vbp_pc.png";
+import vbp_mobile from "../assets/img/mockups/vbp_mobile.png";
+// Mockups
+import ntb_pc from "../assets/img/mockups/ntb_pc.png";
+import ntb_mobile from "../assets/img/mockups/ntb_mobile.png";
+// Badges
+import ITE from "../assets/img/badges/ITE.png";
+import Intro2IoT from "../assets/img/badges/Intro2IoT.png";
+import CHB from "../assets/img/badges/CHB.png";
+import IDS from "../assets/img/badges/IDS.png";
+import I2CS from "../assets/img/badges/I2CS.png";
+import NB from "../assets/img/badges/NB.png";
+import PE1 from "../assets/img/badges/PE1.png";
+import blob from "../assets/img/badges/blob.png";
+import blob1 from "../assets/img/badges/blob1.png";
+import CE1 from "../assets/img/badges/CE1.png";
+// Foto
+import Photo from "../assets/img/photo/photo.png";
 ---
 
 <Layout>
-	<Welcome />
+	<main class="max-w-6xl mx-auto px-4 py-8 bg-slate-50 min-h-screen">
+		<section class="flex items-center gap-6 mb-12">
+			<Image src={Photo} alt="Foto de perfil" class="w-24 h-24 bg-slate-300 rounded-full shadow-2xl"/>
+			<div>
+				<h1 class="text-3xl font-bold text-slate-900">Johan Aamir</h1>
+				<h2 class="text-3xl font-bold text-slate-900">
+					Valentin Garcia
+				</h2>
+				<p class="text-slate-600">Desarrollador Junior</p>
+			</div>
+		</section>
+		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+			<!-- Columna Izquierda -->
+			<aside
+				class="md:col-span-1 bg-white p-6 rounded-lg shadow-sm border border-slate-200">
+				<div class="pb-6">
+					<h2 class="font-semibold text-lg mb-4 text-slate-900">
+						Contactos
+					</h2>
+					<div class="grid grid-cols-3 md:grid-cols-1">
+						<div>
+						<a 
+							href="mailto:johanvalentin718@gmail.com" 
+							class="flex items-center gap-3 text-slate-600 hover:text-slate-900 hover:translate-x-1 transition-all group flex-col md:flex-row text-center md:text-left">
+							<IconGmail class="w-10 h-10 group-hover:rotate-10 transition-all" />
+							<span class="text-xs md:text-sm font-medium break-all">johanvalentin718@gmail.com</span>
+						</a>
+						</div>
+						<div>
+						<a 
+							href="https://www.linkedin.com/in/johan-aamir-valentin-garcia-/?isSelfProfile=true" 
+							target="_blank"
+							class="flex items-center gap-3 text-slate-600 hover:text-slate-900 hover:translate-x-1 transition-all group flex-col md:flex-row text-center md:text-left">
+							<IconLinkedin class="w-10 h-10 group-hover:rotate-10 transition-all" />
+							<span class="text-xs md:text-sm font-medium break-all">johan-aamir-valentin-garcia</span>
+						</a>
+						</div>
+						<div>
+						<a 
+							href="https://www.credly.com/users/aamir-valentin/badges/credly" 
+							target="_blank"
+							class="flex items-center gap-3 text-slate-600 hover:text-slate-900 hover:translate-x-1 transition-all group flex-col md:flex-row text-center md:text-left">
+							<IconCredly class="w-10 h-10 group-hover:rotate-10 transition-all" />
+							<span class="text-xs md:text-sm font-medium break-all">Johan Aamir Valentin Garcia</span>
+						</a>
+						</div>
+					</div>
+				</div>
+				<div>
+					<h2 class="font-semibold text-lg mb-4 text-slate-900">
+						Badges
+					</h2>
+					<div class="grid grid-cols-3 gap-3">
+						<div class="pb-2 hover:scale-105 transition-all">
+							<Image src={ITE} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						</div>
+						<div class="pb-2 hover:scale-105 transition-all">
+							<Image src={Intro2IoT} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						</div>
+						<div class="pb-2 hover:scale-105 transition-all">
+							<Image src={CHB} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						</div>
+						<div class="pb-2 hover:scale-105 transition-all">
+							<Image src={IDS} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						</div>
+						<div class="pb-2 hover:scale-105 transition-all">
+							<Image src={I2CS} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						</div>
+						<div class="pb-2 hover:scale-105 transition-all">
+							<Image src={NB} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						</div>
+						<div class="pb-2 hover:scale-105 transition-all">
+							<Image src={PE1} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						</div>
+						<div class="pb-2 hover:scale-105 transition-all">
+							<Image src={blob} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						</div>
+						<div class="pb-2 hover:scale-105 transition-all">
+							<Image src={blob1} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						</div>
+						<div class="pb-2 hover:scale-105 transition-all">
+							<Image src={CE1} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						</div>
+					</div>
+				</div>
+			</aside>
+
+			<!-- Columna Derecha -->
+			<section
+				class="md:col-span-2 space-y-6 bg-white p-6 rounded-lg shadow-sm border border-slate-200"
+			>
+				<div id="perfil" class="scroll-mt-20">
+					<h2 class="font-semibold text-xl mb-3 text-slate-900">
+						Perfil profesional
+					</h2>
+					<p class="text-slate-600">
+						Soy un estudiante de la carrera de Desarrollo de
+						Software, con conocimientos básicos en el desarrollo de
+						base de datos relacionales, backend, frontend,
+						aplicaciones web y páginas estáticas.
+						Tengo 5 meses de experiencia desarrollando aplicaciones 
+						web con base de datos MySQL y Laravel.
+						Busco oportunidades para aplicar mis habilidades en entornos
+						profesionales y crear soluciones creativas.
+					</p>
+				</div>
+				<div>
+					<h2 class="font-semibold text-xl mb-3 text-slate-900">
+						Formación académica
+					</h2>
+					<p class="text-slate-600">
+						Carrera profesional de Desarrollo de Software 5to ciclo - SENATI
+					</p>
+				</div>
+				<div id="habilidades" class="scroll-mt-20">
+					<h2 class="font-semibold text-xl mb-3 text-slate-900">
+						Habilidades
+					</h2>
+					<div class="grid grid-cols-2 gap-2">
+						<div
+							class="bg-slate-200 rounded-md p-2 transition-all hover:scale-102"
+						>
+							<h3
+								class="font-semibold text-xm mb-3 text-slate-900"
+							>
+								Técnicas:
+							</h3>
+							<ul class="list-disc list-inside">
+								<li class="text-slate-600">
+									Programación con patrón MVC
+								</li>
+								<li class="text-slate-600">
+									Desarrollo de aplicaciones web con Laravel
+								</li>
+								<li class="text-slate-600">
+									Programación con patrón DAO
+								</li>
+								<li class="text-slate-600">
+									Diseño y modelado de bases de datos
+									relacionales
+								</li>
+							</ul>
+						</div>
+						<div
+							class="bg-slate-200 rounded-md p-2 transition-all hover:scale-102"
+						>
+							<h3
+								class="font-semibold text-xm mb-3 text-slate-900"
+							>
+								Blandas:
+							</h3>
+							<ul class="list-disc list-inside">
+								<li class="text-slate-600">
+									Pensamiento crítico
+								</li>
+								<li class="text-slate-600">Escucha activa</li>
+								<li class="text-slate-600">Proactividad</li>
+								<li class="text-slate-600">Compañerismo</li>
+								<li class="text-slate-600">
+									Pensamiento creativo
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div id="proyectos" class="scroll-mt-20">
+					<h2 class="font-semibold text-xl mb-3 text-slate-900">
+						Proyectos y experiencia
+					</h2>
+					<div class="bg-slate-200 rounded-md p-2 w-full relative overflow-hidden swiper">
+						<div class="swiper-wrapper">
+
+							<div class="swiper-slide px-8 md:px-14 py-4">
+								<h3 class="font-semibold text-xm text-slate-900">
+									ValentinBook Publishing
+								</h3>
+								<p class="text-slate-600 pb-2">
+									Desarrollé una página web estática para <a class="font-bold text-slate-700 transition-all hover:text-slate-900" target="_blank" rel="noopener noreferrer" href="https://valentinbook.com/">ValentinBook Publishing</a>,
+									destinada a centralizar la distribución de archivos
+									de práctica oficiales de la colección de libros <strong>Paso a Paso</strong>.
+									El proyecto fue implementado utilizando <strong>HTML</strong>, <strong>CSS</strong>, <strong>JavaScript </strong>
+									y <strong>Bootstrap</strong>, encargándome del desarrollo de la interfaz, la 
+									maquetación responsiva y la implementación de componentes
+									interactivos, como el carrusel de imágenes.
+								</p>
+								<p class="text-slate-600 pb-6">
+									Además, integré <strong>Decap CMS</strong> para proporcionar una
+									interfaz de administración que permitiera gestionar
+									y actualizar los archivos de descarga sin modificar
+									el código fuente, facilitando el mantenimiento y
+									la publicación de contenido por parte de la editorial.
+								</p>
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-2 md:mx-6">
+									<div class="rounded-md overflow-hidden shadow-md border-2 border-slate-200 transition-all hover:scale-102">
+										<Image
+											src={vbp_pc}
+											alt="Página de editorial en PC"
+											class="w-full h-62 md:h-65 object-cover"
+										/>
+									</div>
+									<div class="rounded-md overflow-hidden shadow-md border-2 border-slate-200 transition-all hover:scale-102">
+										<Image
+											src={vbp_mobile}
+											alt="Página de editorial en teléfonos"
+											class="w-full h-62 md:h-65 object-cover"
+										/>
+									</div>
+								</div>
+							</div>
+							<div class="swiper-slide px-8 md:px-14 py-4">
+								<h3 class="font-semibold text-xm text-slate-900">
+									Navi Natubelleza
+								</h3>
+								<p class="text-slate-600 pb-2">
+									Participé en un proyecto de migración de una aplicación 
+									web como parte del equipo de desarrollo de <a class="font-bold text-slate-700 transition-all hover:text-slate-900" target="_blank" rel="noopener noreferrer" href="https://juarextech.com/">Juarex Technology Group</a>, utilizando <strong>Laravel</strong>, <strong> PHP</strong>, <strong> MySQL</strong>, <strong> Blade</strong> y 
+									<strong> Tailwind CSS</strong>. Colaboré 
+									en el diseño e implementación de parte del esquema 
+									de la base de datos, el desarrollo de módulos <strong> CRUD </strong> 
+									para el panel de administración y la integración de 
+									funcionalidades siguiendo la arquitectura <strong> MVC </strong> de Laravel. 
+								</p>
+								<p class="text-slate-600 pb-6">
+									Además, participé en la migración de interfaces
+									desarrolladas en <strong>React</strong> hacia <strong> Blade</strong>, manteniendo
+									la estructura, el comportamiento y la fidelidad
+									visual de la aplicación original, a la vez que
+									se optimizó su integración con el backend y la
+									consistencia del sistema.
+								</p>
+								<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-2 md:mx-6">
+									<div class="rounded-md overflow-hidden shadow-md border-2 border-slate-200 transition-all hover:scale-102">
+										<Image
+											src={ntb_pc}
+											alt="Página de Navi Natubelleza versión escritorio"
+											class="w-full h-62 md:h-65 object-cover"/>
+									</div>
+									<div class="rounded-md overflow-hidden shadow-md border-2 border-slate-200 transition-all hover:scale-102">
+										<Image
+											src={ntb_mobile}
+											alt="Página de Navi Natubelleza versión móvil"
+											class="w-full h-62 md:h-65 object-cover"/>
+									</div>
+								</div>
+							</div>
+
+						</div>
+						<div class="swiper-pagination"></div>
+						<div class="swiper-button-prev"></div>
+						<div class="swiper-button-next"></div>
+					</div>
+				</div>
+				<script>
+					import Swiper from 'swiper';
+					import { Navigation, Pagination } from 'swiper/modules';
+
+					new Swiper('.swiper', {
+						modules: [Navigation, Pagination],
+						loop: true,
+						pagination: {
+						el: '.swiper-pagination',
+						clickable: true,
+						},
+						navigation: {
+						nextEl: '.swiper-button-next',
+						prevEl: '.swiper-button-prev',
+						},
+					});
+				</script>
+			</section>
+		</div>
+	</main>
 </Layout>
