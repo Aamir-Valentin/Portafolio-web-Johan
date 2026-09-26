@@ -1,0 +1,42 @@
+<dialog
+    id="crud-modal"
+    class="rounded-xl p-0 backdrop:bg-slate-900/50 max-w-md w-full shadow-2xl border-0"
+>
+    <div class="p-6">
+        <div class="flex justify-between items-center mb-4">
+            <h3 id="modal-title" class="text-lg font-bold text-slate-800">
+                Nuevo Registro
+            </h3>
+
+            <button
+                id="btn-close-modal"
+                type="button"
+                class="text-slate-400 hover:text-slate-600 text-xl"
+                aria-label="Cerrar ventana"
+            >
+                &times;
+            </button>
+        </div>
+
+        <form id="modal-form">
+            <div id="modal-inputs" class="space-y-3 mb-6"></div>
+
+            <div class="flex justify-end gap-2">
+                <button
+                    type="button"
+                    id="btn-cancel-modal"
+                    class="px-4 py-2 border border-slate-300 rounded-lg text-slate-600 text-sm font-medium hover:bg-slate-50"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    type="submit"
+                    class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow-sm"
+                >
+                    Guardar
+                </button>
+            </div>
+        </form>
+    </div>
+</dialog>

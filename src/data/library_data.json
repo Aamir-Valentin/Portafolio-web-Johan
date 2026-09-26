@@ -1,0 +1,21 @@
+{
+    "autores": [
+        { "id": 1, "nombre": "Mario", "apellido": "Vargas Llosa" },
+        { "id": 2, "nombre": "Edgar", "apellido": "Allan Poe" }
+    ],
+
+    "editoriales": [
+        { "id": 1, "nombre": "Alfaguara", "pais": "España" },
+        { "id": 2, "nombre": "ValentinBook", "pais": "Perú" }
+    ],
+
+    "categorias": [
+        { "id": 1, "nombre": "Novela" },
+        { "id": 2, "nombre": "Romanticismo" }
+    ],
+
+    "libros": [
+        { "ISBN": 1, "titulo": "La ciudad y los perros", "id_categoria": 1, "id_autor": 1, "id_editorial": 2, "anio": 1843 },
+        { "ISBN": 2, "titulo": "El gato negro", "id_categoria": 2, "id_autor": 2, "id_editorial": 1, "anio": 1963 }
+    ]
+}

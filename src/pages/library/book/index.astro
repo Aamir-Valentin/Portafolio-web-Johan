@@ -1,0 +1,58 @@
+---
+import "../../../styles/global.css";
+import Layout from "../../../layouts/Layout.astro";
+---
+
+<Layout>
+  <main class="mx-auto max-w-6xl px-4 py-8">
+    <a href="/library" class="text-sm text-blue-600 transition-all hover:-translate-x-1 hover:text-blue-800 hover:underline">← Biblioteca</a>
+    <div class="mb-6 mt-4 flex items-center justify-between border-b border-slate-200 pb-4"><h1 class="text-2xl font-bold text-slate-800">Libros</h1><button id="new-button" class="rounded bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md">Nuevo libro</button></div>
+    <div class="mb-4 flex gap-2"><input id="search" type="number" placeholder="Buscar por ISBN" class="rounded border border-slate-300 px-3 py-2 text-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100" /><button id="search-button" class="rounded bg-slate-100 px-4 py-2 text-sm transition-all hover:-translate-y-0.5 hover:bg-slate-200 hover:shadow-sm">Buscar</button></div>
+    <div class="overflow-x-auto rounded border border-slate-200 bg-white shadow-sm"><table class="w-full text-left text-sm"><thead class="bg-slate-50"><tr><th class="p-3">ISBN</th><th class="p-3">Título</th><th class="p-3">Autor</th><th class="p-3">Categoría</th><th class="p-3">Editorial</th><th class="p-3">Año</th><th class="p-3 text-right">Acciones</th></tr></thead><tbody id="rows" class="[&>tr]:transition-colors [&>tr:hover]:bg-slate-50"></tbody></table></div>
+    <dialog id="modal" class="w-full max-w-md rounded-xl p-6 shadow-xl backdrop:bg-slate-900/50"><h2 class="mb-4 text-lg font-bold">Nuevo libro</h2><form id="form" class="space-y-3"><input id="isbn" required type="number" placeholder="ISBN" class="w-full rounded border p-2 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100" /><input id="titulo" required placeholder="Título" class="w-full rounded border p-2 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100" /><select id="autor" required class="w-full rounded border p-2 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"></select><select id="categoria" required class="w-full rounded border p-2 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"></select><select id="editorial" required class="w-full rounded border p-2 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100"></select><input id="anio" required type="number" placeholder="Año" class="w-full rounded border p-2 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100" /><div class="flex justify-end gap-2"><button type="button" id="cancel" class="rounded border px-4 py-2 transition hover:bg-slate-100">Cancelar</button><button class="rounded bg-blue-600 px-4 py-2 text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-md">Guardar</button></div></form></dialog>
+  </main>
+</Layout>
+
+<script>
+	// @ts-nocheck
+  import { getBook, getBookByISBN, createBook, updateBook, deleteBook } from "../../../controllers/bookController.js";
+  import { getAuthors } from "../../../controllers/authorController.js";
+  import { getCategory } from "../../../controllers/categoryController.js";
+  import { getEditorial } from "../../../controllers/editorialController.js";
+  let editingISBN: number | null = null;
+  const modal = document.querySelector("#modal") as HTMLDialogElement;
+  const form = document.querySelector("#form") as HTMLFormElement;
+  const rows = document.querySelector("#rows") as HTMLElement;
+  const isbn = document.querySelector("#isbn") as HTMLInputElement;
+  const title = document.querySelector("#titulo") as HTMLInputElement;
+  const author = document.querySelector("#autor") as HTMLSelectElement;
+  const category = document.querySelector("#categoria") as HTMLSelectElement;
+  const editorial = document.querySelector("#editorial") as HTMLSelectElement;
+  const year = document.querySelector("#anio") as HTMLInputElement;
+  const search = document.querySelector("#search") as HTMLInputElement;
+  function loadOptions() {
+    author.innerHTML = getAuthors().map((item: { id: number; nombre: string; apellido: string }) => `<option value="${item.id}">${item.nombre} ${item.apellido}</option>`).join("");
+    category.innerHTML = getCategory().map((item: { id: number; nombre: string }) => `<option value="${item.id}">${item.nombre}</option>`).join("");
+    editorial.innerHTML = getEditorial().map((item: { id: number; nombre: string }) => `<option value="${item.id}">${item.nombre}</option>`).join("");
+  }
+  function render(list = getBook()) { rows.innerHTML = list.map((book: { ISBN: number; titulo: string; autorNombre: string; categoriaNombre: string; editorialNombre: string; anio: number }) => `<tr class="border-t"><td class="p-3">${book.ISBN}</td><td class="p-3">${book.titulo}</td><td class="p-3">${book.autorNombre}</td><td class="p-3">${book.categoriaNombre}</td><td class="p-3">${book.editorialNombre}</td><td class="p-3">${book.anio}</td><td class="p-3 text-right"><button class="edit text-blue-600" data-id="${book.ISBN}">Editar</button> <button class="remove text-rose-600" data-id="${book.ISBN}">Eliminar</button></td></tr>`).join(""); }
+  document.querySelector("#new-button")?.addEventListener("click", () => { editingISBN = null; form.reset(); isbn.disabled = false; loadOptions(); modal.showModal(); });
+  document.querySelector("#cancel")?.addEventListener("click", () => modal.close());
+  document.querySelector("#search-button")?.addEventListener("click", () => render(search.value ? [getBookByISBN(search.value)].filter(Boolean) : getBook()));
+  rows.addEventListener("click", event => { const button = (event.target as HTMLElement).closest("button"); if (!button) return; const id = Number(button.dataset.id); if (button.classList.contains("remove")) deleteBook(id); if (button.classList.contains("edit")) { const book = getBookByISBN(id); if (!book) return; editingISBN = id; loadOptions(); isbn.value = String(book.ISBN); isbn.disabled = true; title.value = book.titulo; author.value = String(book.id_autor); category.value = String(book.id_categoria); editorial.value = String(book.id_editorial); year.value = String(book.anio); modal.showModal(); return; } render(); });
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    if (editingISBN === null) {
+      const created = createBook(isbn.value, title.value, category.value, author.value, editorial.value, year.value);
+      if (!created) {
+        alert("Ya existe un libro con ese ISBN.");
+        return;
+      }
+    } else {
+      updateBook(editingISBN, title.value, category.value, author.value, editorial.value, year.value);
+    }
+    modal.close();
+    render();
+  });
+  render();
+</script>
