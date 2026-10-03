@@ -1,16 +1,22 @@
 ---
 import "../../styles/global.css";
+import { Image } from "astro:assets";
+import bannerImage from "../../assets/img/library/banner.png";
 import Layout from "../../layouts/Layout.astro";
 import Dashboard from "../../components/library/Dashboard.astro";
 ---
 
 <Layout>
+<section class="relative isolate overflow-hidden bg-black">
+  <Image src={bannerImage} alt="" class="absolute inset-0 h-full w-full scale-110 object-cover opacity-60 blur-2xl" />
+  <div aria-hidden="true" class="absolute inset-0 bg-black/55"></div>
+  <Image src={bannerImage} alt="" class="relative mx-auto block h-[clamp(13rem,45vw,38rem)] w-full object-contain" />
+  <div class="sr-only">
+    <h1>Sistema de gestión de biblioteca</h1>
+    <p>Este proyecto fue añadido para brindar una muestra de los proyectos que se realizan.</p>
+  </div>
+</section>
 <main class="min-h-screen max-w-6xl mx-auto bg-slate-50 px-4 py-8">
-  <header class="mb-8 border-b border-slate-200 pb-6">
-      <h1 class="text-2xl font-bold text-slate-800 transition-colors hover:text-blue-700">Sistema de Biblioteca</h1>
-      <p class="text-slate-500">Selecciona una sección para administrar sus registros.</p>
-    </header>
-
-    <Dashboard />
-  </main>
+  <Dashboard />
+</main>
 </Layout>

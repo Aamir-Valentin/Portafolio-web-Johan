@@ -1,43 +1,67 @@
 ---
-// Dashboard.astro
+import { Image } from "astro:assets";
+import authorImage from "../../assets/img/library/author-img.png";
+import bookImage from "../../assets/img/library/book-img.png";
+import categoryImage from "../../assets/img/library/category-img.png";
+import editorialImage from "../../assets/img/library/editorial-img.png";
 ---
 
-<section id="dashboard-view" class="animate-[library-fade-in_0.45s_ease-out]">
+<section id="dashboard-view" class="motion-safe:animate-library-fade-in">
   <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
     <a
       href="/library/book"
-      class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-500 hover:shadow-lg"
+      class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-500 hover:shadow-lg"
     >
-      <span class="text-2xl transition-transform duration-200 group-hover:scale-110">📖</span>
-      <h2 class="mt-2 font-bold text-slate-800">Libros</h2>
-      <p class="text-sm text-slate-500">Catálogo y relaciones</p>
+      <div class="relative aspect-square w-full overflow-hidden">
+        <Image src={bookImage} alt="Estanterías llenas de libros" class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]" />
+        <div aria-hidden="true" class="absolute inset-0 bg-[linear-gradient(180deg,transparent_76%,white_100%)]"></div>
+      </div>
+      <div class="px-4 pb-4">
+        <h2 class="font-bold text-slate-800">Libros</h2>
+        <p class="text-sm text-slate-500">Catálogo y relaciones</p>
+      </div>
     </a>
 
     <a
       href="/library/author"
-      class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-500 hover:shadow-lg"
+      class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-500 hover:shadow-lg"
     >
-      <span class="text-2xl transition-transform duration-200 group-hover:scale-110">✍️</span>
-      <h2 class="mt-2 font-bold text-slate-800">Autores</h2>
-      <p class="text-sm text-slate-500">Escritores registrados</p>
+      <div class="relative aspect-square w-full overflow-hidden">
+        <Image src={authorImage} alt="Libros de autores reconocidos" class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]" />
+        <div aria-hidden="true" class="absolute inset-0 bg-[linear-gradient(180deg,transparent_76%,white_100%)]"></div>
+      </div>
+      <div class="px-4 pb-4">
+        <h2 class="font-bold text-slate-800">Autores</h2>
+        <p class="text-sm text-slate-500">Escritores registrados</p>
+      </div>
     </a>
 
     <a
       href="/library/category"
-      class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-500 hover:shadow-lg"
+      class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-500 hover:shadow-lg"
     >
-      <span class="text-2xl transition-transform duration-200 group-hover:scale-110">🏷️</span>
-      <h2 class="mt-2 font-bold text-slate-800">Categorías</h2>
-      <p class="text-sm text-slate-500">Géneros y temas</p>
+      <div class="relative aspect-square w-full overflow-hidden">
+        <Image src={categoryImage} alt="Libros organizados por géneros" class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]" />
+        <div aria-hidden="true" class="absolute inset-0 bg-[linear-gradient(180deg,transparent_76%,white_100%)]"></div>
+      </div>
+      <div class="px-4 pb-4">
+        <h2 class="font-bold text-slate-800">Categorías</h2>
+        <p class="text-sm text-slate-500">Géneros y temas</p>
+      </div>
     </a>
 
     <a
       href="/library/editorial"
-      class="group rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-500 hover:shadow-lg"
+      class="group overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-blue-500 hover:shadow-lg"
     >
-      <span class="text-2xl transition-transform duration-200 group-hover:scale-110">🏢</span>
-      <h2 class="mt-2 font-bold text-slate-800">Editoriales</h2>
-      <p class="text-sm text-slate-500">Casas publicadoras</p>
+      <div class="relative aspect-square w-full overflow-hidden">
+        <Image src={editorialImage} alt="Mesa de trabajo editorial con libros y documentos" class="h-full w-full object-cover transition-transform duration-200 group-hover:scale-[1.02]" />
+        <div aria-hidden="true" class="absolute inset-0 bg-[linear-gradient(180deg,transparent_76%,white_100%)]"></div>
+      </div>
+      <div class="px-4 pb-4">
+        <h2 class="font-bold text-slate-800">Editoriales</h2>
+        <p class="text-sm text-slate-500">Casas publicadoras</p>
+      </div>
     </a>
   </div>
 
@@ -59,9 +83,3 @@
   });
 </script>
 
-<style>
-  @keyframes library-fade-in {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-</style>

@@ -32,15 +32,15 @@ import Photo from "../assets/img/photo/photo.png";
 ---
 
 <Layout title="Portafolio">
-	<main class="max-w-6xl mx-auto px-4 py-8 bg-slate-50 min-h-screen">
-		<section class="flex items-center gap-6 mb-12">
-			<Image src={Photo} alt="Foto de perfil" class="w-24 h-24 bg-slate-300 rounded-full shadow-2xl"/>
+	<main class="max-w-6xl mx-auto px-4 py-8 bg-slate-50 min-h-screen motion-safe:animate-library-fade-in">
+		<section class="mb-12 flex flex-col items-center gap-4 rounded-lg bg-slate-700 px-5 py-6 text-center shadow-sm sm:flex-row sm:gap-6 sm:text-left">
+			<Image src={Photo} alt="Foto de perfil" class="h-24 w-24 rounded-full border-2 border-white/70 bg-slate-300 shadow-lg"/>
 			<div>
-				<h1 class="text-3xl font-bold text-slate-900">Johan Aamir</h1>
-				<h2 class="text-3xl font-bold text-slate-900">
+				<h1 class="text-3xl font-bold text-white">Johan Aamir</h1>
+				<h2 class="text-3xl font-bold text-white">
 					Valentin Garcia
 				</h2>
-				<p class="text-slate-600">Desarrollador Junior</p>
+				<p class="text-slate-200">Desarrollador Junior</p>
 			</div>
 		</section>
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -150,9 +150,9 @@ import Photo from "../assets/img/photo/photo.png";
 					<h2 class="font-semibold text-xl mb-3 text-slate-900">
 						Habilidades
 					</h2>
-					<div class="grid grid-cols-2 gap-2">
+					<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
 						<div
-							class="bg-slate-200 rounded-md p-2 transition-all hover:scale-102"
+							class="rounded-md border border-slate-200 bg-slate-100 p-4 transition-all hover:scale-102"
 						>
 							<h3
 								class="font-semibold text-xm mb-3 text-slate-900"
@@ -176,7 +176,7 @@ import Photo from "../assets/img/photo/photo.png";
 							</ul>
 						</div>
 						<div
-							class="bg-slate-200 rounded-md p-2 transition-all hover:scale-102"
+							class="rounded-md border border-slate-200 bg-slate-100 p-4 transition-all hover:scale-102"
 						>
 							<h3
 								class="font-semibold text-xm mb-3 text-slate-900"
