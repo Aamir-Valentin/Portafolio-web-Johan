@@ -17,7 +17,7 @@ import Layout from "../../../layouts/Layout.astro";
     </div>
     <div class="mb-4 flex gap-2"><input id="search" type="number" placeholder="Buscar por ID" class="rounded border border-slate-300 px-3 py-2 text-sm transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100" /><button id="search-button" class="rounded bg-slate-100 px-4 py-2 text-sm transition-all hover:-translate-y-0.5 hover:bg-slate-200 hover:shadow-sm">Buscar</button></div>
     <div class="overflow-x-auto rounded border border-slate-200 bg-white shadow-sm"><table class="w-full text-center text-sm"><thead class="bg-gray-300"><tr><th class="p-3">ID</th><th class="p-3">Nombre</th><th class="p-3">Acciones</th></tr></thead><tbody id="rows" class="[&>tr]:transition-colors [&>tr:hover]:bg-blue-50/50 [&>tr:nth-child(even)]:bg-gray-50/50"></tbody></table></div>
-    <dialog id="modal" class="w-full max-w-md rounded-xl p-6 shadow-xl backdrop:bg-slate-900/50"><h2 class="mb-4 text-lg font-bold">Nueva categoría</h2><form id="form" class="space-y-3"><input id="nombre" required placeholder="Nombre" class="w-full rounded border p-2" /><div class="flex justify-end gap-2"><button type="button" id="cancel" class="rounded border px-4 py-2">Cancelar</button><button class="rounded bg-blue-600 px-4 py-2 text-white">Guardar</button></div></form></dialog>
+    <dialog id="modal" class="m-auto w-[calc(100%-2rem)] max-w-md rounded-xl p-6 shadow-xl backdrop:bg-slate-900/50"><h2 id="modal-title" class="mb-4 text-lg font-bold">Nueva categoría</h2><form id="form" class="space-y-3"><input id="nombre" required placeholder="Nombre" class="w-full rounded border p-2" /><div class="flex justify-end gap-2"><button type="button" id="cancel" class="rounded border px-4 py-2">Cancelar</button><button class="rounded bg-blue-600 px-4 py-2 text-white">Guardar</button></div></form></dialog>
   </main>
 </Layout>
 
@@ -27,14 +27,15 @@ import Layout from "../../../layouts/Layout.astro";
   let editingId: number | null = null;
   const modal = document.querySelector("#modal") as HTMLDialogElement;
   const form = document.querySelector("#form") as HTMLFormElement;
+  const modalTitle = document.querySelector("#modal-title") as HTMLElement;
   const rows = document.querySelector("#rows") as HTMLElement;
   const nameInput = document.querySelector("#nombre") as HTMLInputElement;
   const search = document.querySelector("#search") as HTMLInputElement;
   function render(list = getCategory()) { rows.innerHTML = list.map((category: { id: number; nombre: string }) => `<tr class="border-t"><td class="p-3">${category.id}</td><td class="p-3">${category.nombre}</td><td class="p-3 text-center"><button class="edit bg-yellow-400 rounded p-1 text-black transition-all hover:bg-yellow-600" data-id="${category.id}">Modificar</button> <button class="remove bg-red-600 rounded p-1 text-white transition-all hover:bg-red-800" data-id="${category.id}">Eliminar</button></td></tr>`).join(""); }
-  document.querySelector("#new-button")?.addEventListener("click", () => { editingId = null; form.reset(); modal.showModal(); });
+  document.querySelector("#new-button")?.addEventListener("click", () => { editingId = null; form.reset(); modalTitle.textContent = "Nueva categoría"; modal.showModal(); });
   document.querySelector("#cancel")?.addEventListener("click", () => modal.close());
   document.querySelector("#search-button")?.addEventListener("click", () => render(search.value ? [getCategoryById(search.value)].filter(Boolean) : getCategory()));
-  rows.addEventListener("click", event => { const button = (event.target as HTMLElement).closest("button"); if (!button) return; const id = Number(button.dataset.id); if (button.classList.contains("remove")) deleteCategory(id); if (button.classList.contains("edit")) { const category = getCategoryById(id); if (!category) return; editingId = id; nameInput.value = category.nombre; modal.showModal(); return; } render(); });
+  rows.addEventListener("click", event => { const button = (event.target as HTMLElement).closest("button"); if (!button) return; const id = Number(button.dataset.id); if (button.classList.contains("remove")) deleteCategory(id); if (button.classList.contains("edit")) { const category = getCategoryById(id); if (!category) return; editingId = id; nameInput.value = category.nombre; modalTitle.textContent = "Editar categoría"; modal.showModal(); return; } render(); });
   form.addEventListener("submit", event => { event.preventDefault(); editingId === null ? createCategory(nameInput.value) : updateCategory(editingId, nameInput.value); modal.close(); render(); });
   render();
 </script>

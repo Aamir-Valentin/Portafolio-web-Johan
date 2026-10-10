@@ -22,7 +22,7 @@ import Layout from "../../../layouts/Layout.astro";
 		<div class="overflow-x-auto rounded border border-slate-200 bg-white shadow-sm">
 			<table class="w-full text-center text-sm"><thead class="bg-gray-300"><tr><th class="p-3">ID</th><th class="p-3">Nombre</th><th class="p-3">Apellido</th><th class="p-3">Acciones</th></tr></thead><tbody id="rows" class="[&>tr]:transition-colors [&>tr:hover]:bg-blue-50/50 [&>tr:nth-child(even)]:bg-gray-50/50"></tbody></table>
 		</div>
-		<dialog id="modal" class="w-full max-w-md rounded-xl p-6 shadow-xl backdrop:bg-slate-900/50">
+		<dialog id="modal" class="m-auto w-[calc(100%-2rem)] max-w-md rounded-xl p-6 shadow-xl backdrop:bg-slate-900/50">
 			<h2 id="modal-title" class="mb-4 text-lg font-bold">Nuevo autor</h2>
 			<form id="form" class="space-y-3">
 				<input id="nombre" required placeholder="Nombre" class="w-full rounded border p-2 transition focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100" />
@@ -39,6 +39,7 @@ import Layout from "../../../layouts/Layout.astro";
 	let editingId: number | null = null;
 	const modal = document.querySelector("#modal") as HTMLDialogElement;
 	const form = document.querySelector("#form") as HTMLFormElement;
+	const modalTitle = document.querySelector("#modal-title") as HTMLElement;
 	const rows = document.querySelector("#rows") as HTMLElement;
 	const nameInput = document.querySelector("#nombre") as HTMLInputElement;
 	const surnameInput = document.querySelector("#apellido") as HTMLInputElement;
@@ -48,7 +49,7 @@ import Layout from "../../../layouts/Layout.astro";
 		rows.innerHTML = list.map((author: { id: number; nombre: string; apellido: string }) => `<tr class="border-t"><td class="p-3">${author.id}</td><td class="p-3">${author.nombre}</td><td class="p-3">${author.apellido}</td><td class="p-3 text-center"><button class="edit bg-yellow-400 rounded p-1 text-black transition-all hover:bg-yellow-600" data-id="${author.id}">Modificar</button> <button class="remove bg-red-600 rounded p-1 text-white transition-all hover:bg-red-800" data-id="${author.id}">Eliminar</button></td></tr>`).join("");
 	}
 
-	document.querySelector("#new-button")?.addEventListener("click", () => { editingId = null; form.reset(); modal.showModal(); });
+	document.querySelector("#new-button")?.addEventListener("click", () => { editingId = null; form.reset(); modalTitle.textContent = "Nuevo autor"; modal.showModal(); });
 	document.querySelector("#cancel")?.addEventListener("click", () => modal.close());
 	document.querySelector("#search-button")?.addEventListener("click", () => render(search.value ? [getAuthorById(search.value)].filter(Boolean) : getAuthors()));
 	rows.addEventListener("click", event => {
@@ -56,7 +57,7 @@ import Layout from "../../../layouts/Layout.astro";
 		if (!button) return;
 		const id = Number(button.dataset.id);
 		if (button.classList.contains("remove")) deleteAuthor(id);
-		if (button.classList.contains("edit")) { const author = getAuthorById(id); if (!author) return; editingId = id; nameInput.value = author.nombre; surnameInput.value = author.apellido; modal.showModal(); return; }
+		if (button.classList.contains("edit")) { const author = getAuthorById(id); if (!author) return; editingId = id; nameInput.value = author.nombre; surnameInput.value = author.apellido; modalTitle.textContent = "Editar autor"; modal.showModal(); return; }
 		render();
 	});
 	form.addEventListener("submit", event => { event.preventDefault(); editingId === null ? createAuthor(nameInput.value, surnameInput.value) : updateAuthor(editingId, nameInput.value, surnameInput.value); modal.close(); render(); });
