@@ -1,0 +1,29 @@
+local_backend: true
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "public/images/mockups"
+public_folder: "/images/mockups"
+
+collections:
+  - name: "proyectos"
+    label: "Gestión de proyectos"
+    folder: "src/content/projects"  # Carpeta real en tu proyecto Astro donde viven tus .md o .mdx
+    create: true
+    slug: "{{slug}}"            # Patrón para el nombre del archivo basado en el título
+    fields:
+      - { label: "Título del proyecto", name: "title", widget: "string" }
+      - label: "Tipo de Proyecto"
+        name: "type"
+        widget: "select"
+        options: ["Página web", "Aplicación web", "Aplicación de escritorio"]
+        default: "Aplicación web"
+      - { label: "Descripción", name: "description", widget: "markdown" }
+      - { label: "Fecha de realización", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - label: "Mockup / Imágenes"
+        name: "images"
+        widget: "list"
+        min: 1
+        max: 2
+        field: { label: "Imagen de Mockup", name: "image", widget: "image" }

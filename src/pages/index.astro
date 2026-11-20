@@ -10,12 +10,6 @@ import 'swiper/css/pagination';
 import IconGmail from '../components/icons/icon_gmail.astro';
 import IconLinkedin from '../components/icons/icon_linkedin.astro';
 import IconCredly from '../components/icons/icon_credly.astro';
-// Mockups
-import vbp_pc from "../assets/img/mockups/vbp_pc.png";
-import vbp_mobile from "../assets/img/mockups/vbp_mobile.png";
-// Mockups
-import ntb_pc from "../assets/img/mockups/ntb_pc.png";
-import ntb_mobile from "../assets/img/mockups/ntb_mobile.png";
 // Badges
 import ITE from "../assets/img/badges/ITE.png";
 import Intro2IoT from "../assets/img/badges/Intro2IoT.png";
@@ -28,19 +22,27 @@ import blob from "../assets/img/badges/blob.png";
 import blob1 from "../assets/img/badges/blob1.png";
 import CE1 from "../assets/img/badges/CE1.png";
 // Foto
-import Photo from "../assets/img/photo/photo.png";
+import Photo from "../assets/img/photo/photo-banner.png";
+
+import { marked } from 'marked';
+import { getCollection } from 'astro:content';
+const proyectos = await getCollection('proyectos');
 ---
 
 <Layout title="Portafolio">
-	<main class="max-w-6xl mx-auto px-4 py-8 bg-slate-50 min-h-screen motion-safe:animate-library-fade-in">
-		<section class="mb-12 flex flex-col items-center gap-4 rounded-lg bg-white px-5 py-6 text-center shadow-sm sm:flex-row sm:gap-6 sm:text-left">
-			<Image src={Photo} alt="Foto de perfil" class="h-24 w-24 rounded-full border-2 border-slate-200 bg-slate-300 shadow-lg"/>
-			<div>
-				<h1 class="text-3xl font-bold text-slate-900">Johan Aamir</h1>
-				<h2 class="text-3xl font-bold text-slate-900">
+	<main class="max-w-6xl mx-auto px-4 py-8 bg-slate-100 min-h-screen motion-safe:animate-library-fade-in shadow-sm">
+		<section class="w-full min-w-0 mb-12 flex flex-col items-center gap-4 rounded-lg from-slate-400 to-slate-800 bg-gradient-to-r px-5 py-6 text-center shadow-sm md:flex-row md:gap-8 md:px-8 md:text-left">
+			<Image src={Photo} alt="Foto de banner" class="h-auto w-44 sm:w-56 md:w-64 lg:w-72 shrink-0 mask-alpha mask-b-from-black mask-b-from-65% mask-b-to-transparent transition-all duration-700 hover:scale-105 hover:translate-x-2 peer"/>
+			<div class="transition-all duration-500 tracking-tight md:peer-hover:tracking-wider md:peer-hover:translate-x-2">
+				<h1 class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight">
+					Johan Aamir
+				</h1>
+				<h2 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white/95 leading-tight mt-1">
 					Valentin Garcia
 				</h2>
-				<p class="text-slate-600">Desarrollador Junior</p>
+				<p class="text-base sm:text-lg lg:text-xl text-slate-200 mt-2">
+					Desarrollador Junior
+				</p>
 			</div>
 		</section>
 		<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -85,35 +87,35 @@ import Photo from "../assets/img/photo/photo.png";
 						Badges
 					</h2>
 					<div class="grid grid-cols-3 gap-3">
-						<div class="pb-2 hover:scale-105 transition-all">
-							<Image src={ITE} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						<div class="pb-2 hover:scale-105 transition-all duration-500">
+							<Image src={ITE} alt="Badge IT Essentials" class="h-auto w-full shadow-md hover:shadow-xl rotate-x-15 -rotate-y-30 hover:rotate-x-1 hover:-rotate-y-1 max-w-22 object-contain duration-500"/>
 						</div>
-						<div class="pb-2 hover:scale-105 transition-all">
-							<Image src={Intro2IoT} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						<div class="pb-2 hover:scale-105 transition-all duration-500">
+							<Image src={Intro2IoT} alt="Badge IT Essentials" class="h-auto w-full shadow-md hover:shadow-xl rotate-x-15 -rotate-y-30 hover:rotate-x-1 hover:-rotate-y-1 max-w-22 object-contain duration-500"/>
 						</div>
-						<div class="pb-2 hover:scale-105 transition-all">
-							<Image src={CHB} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						<div class="pb-2 hover:scale-105 transition-all duration-500">
+							<Image src={CHB} alt="Badge IT Essentials" class="h-auto w-full shadow-md hover:shadow-xl rotate-x-15 -rotate-y-30 hover:rotate-x-1 hover:-rotate-y-1 max-w-22 object-contain duration-500"/>
 						</div>
-						<div class="pb-2 hover:scale-105 transition-all">
-							<Image src={IDS} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						<div class="pb-2 hover:scale-105 transition-all duration-500">
+							<Image src={IDS} alt="Badge IT Essentials" class="h-auto w-full shadow-md hover:shadow-xl rotate-x-15 -rotate-y-30 hover:rotate-x-1 hover:-rotate-y-1 max-w-22 object-contain duration-500"/>
 						</div>
-						<div class="pb-2 hover:scale-105 transition-all">
-							<Image src={I2CS} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						<div class="pb-2 hover:scale-105 transition-all duration-500">
+							<Image src={I2CS} alt="Badge IT Essentials" class="h-auto w-full shadow-md hover:shadow-xl rotate-x-15 -rotate-y-30 hover:rotate-x-1 hover:-rotate-y-1 max-w-22 object-contain duration-500"/>
 						</div>
-						<div class="pb-2 hover:scale-105 transition-all">
-							<Image src={NB} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						<div class="pb-2 hover:scale-105 transition-all duration-500">
+							<Image src={NB} alt="Badge IT Essentials" class="h-auto w-full shadow-md hover:shadow-xl rotate-x-15 -rotate-y-30 hover:rotate-x-1 hover:-rotate-y-1 max-w-22 object-contain duration-500"/>
 						</div>
-						<div class="pb-2 hover:scale-105 transition-all">
-							<Image src={PE1} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						<div class="pb-2 hover:scale-105 transition-all duration-500">
+							<Image src={PE1} alt="Badge IT Essentials" class="h-auto w-full shadow-md hover:shadow-xl rotate-x-15 -rotate-y-30 hover:rotate-x-1 hover:-rotate-y-1 max-w-22 object-contain duration-500"/>
 						</div>
-						<div class="pb-2 hover:scale-105 transition-all">
-							<Image src={blob} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						<div class="pb-2 hover:scale-105 transition-all duration-500">
+							<Image src={blob} alt="Badge IT Essentials" class="h-auto w-full shadow-md hover:shadow-xl rotate-x-15 -rotate-y-30 hover:rotate-x-1 hover:-rotate-y-1 max-w-22 object-contain duration-500"/>
 						</div>
-						<div class="pb-2 hover:scale-105 transition-all">
-							<Image src={blob1} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						<div class="pb-2 hover:scale-105 transition-all duration-500">
+							<Image src={blob1} alt="Badge IT Essentials" class="h-auto w-full shadow-md hover:shadow-xl rotate-x-15 -rotate-y-30 hover:rotate-x-1 hover:-rotate-y-1 max-w-22 object-contain duration-500"/>
 						</div>
-						<div class="pb-2 hover:scale-105 transition-all">
-							<Image src={CE1} alt="Badge IT Essentials" class="h-auto w-full max-w-22 object-contain"/>
+						<div class="pb-2 hover:scale-105 transition-all duration-500">
+							<Image src={CE1} alt="Badge IT Essentials" class="h-auto w-full shadow-md hover:shadow-xl rotate-x-15 -rotate-y-30 hover:rotate-x-1 hover:-rotate-y-1 max-w-22 object-contain duration-500"/>
 						</div>
 					</div>
 				</div>
@@ -127,7 +129,7 @@ import Photo from "../assets/img/photo/photo.png";
 					<h2 class="font-semibold text-xl mb-3 text-slate-900">
 						Perfil profesional
 					</h2>
-					<p class="text-slate-600">
+					<p class="text-slate-600 text-justify">
 						Soy un estudiante de la carrera de Desarrollo de
 						Software, con conocimientos básicos en el desarrollo de
 						base de datos relacionales, backend, frontend,
@@ -152,13 +154,13 @@ import Photo from "../assets/img/photo/photo.png";
 					</h2>
 					<div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
 						<div
-							class="rounded-md border border-slate-200 bg-slate-100 p-4 transition-all hover:scale-102 duration-500">
+							class="shadow-md rounded-md border border-slate-200 bg-slate-100 px-8 py-4 transition-all hover:scale-102 hover:shadow-xl duration-500">
 							<h3
-								class="font-semibold text-xm mb-3 text-slate-900"
+								class="font-semibold text-lg mb-3 text-slate-900"
 							>
 								Técnicas:
 							</h3>
-							<ul class="list-disc list-inside">
+							<ul class="list-disc list-outside pl-5">
 								<li class="text-slate-600">
 									Desarrollo de aplicaciones web con arquitectura MVC y Laravel.
 								</li>
@@ -174,14 +176,14 @@ import Photo from "../assets/img/photo/photo.png";
 							</ul>
 						</div>
 						<div
-							class="rounded-md border border-slate-200 bg-slate-100 p-4 transition-all hover:scale-102 duration-500"
+							class="shadow-md rounded-md border border-slate-200 bg-slate-100 px-8 py-4 transition-all hover:scale-102 hover:shadow-xl duration-500"
 						>
 							<h3
-								class="font-semibold text-xm mb-3 text-slate-900"
+								class="font-semibold text-lg mb-3 text-slate-900"
 							>
 								Blandas:
 							</h3>
-							<ul class="list-disc list-inside">
+							<ul class="list-disc list-outside pl-5">
 								<li class="text-slate-600">
 									Pensamiento crítico
 								</li>
@@ -197,88 +199,56 @@ import Photo from "../assets/img/photo/photo.png";
 					<h2 class="font-semibold text-xl mb-3 text-slate-900">
 						Proyectos y experiencia
 					</h2>
-					<div class="bg-slate-100 rounded-md p-2 w-full relative overflow-hidden swiper">
-						<div class="swiper-wrapper">
+					<div class="bg-slate-100 shadow-md rounded-md p-2 w-full relative overflow-hidden swiper">
+        <div class="swiper-wrapper">
 
-							<div class="swiper-slide px-8 md:px-14 py-4">
-								<h3 class="font-semibold text-xm text-slate-900">
-									ValentinBook Publishing
-								</h3>
-								<p class="text-slate-600 pb-2">
-									Desarrollé una página web estática para <a class="font-bold text-slate-700 transition-all hover:text-slate-900" target="_blank" rel="noopener noreferrer" href="https://valentinbook.com/">ValentinBook Publishing</a>,
-									destinada a centralizar la distribución de archivos
-									de práctica oficiales de la colección de libros <strong>Paso a Paso</strong>.
-									El proyecto fue implementado utilizando <strong>HTML</strong>, <strong>CSS</strong>, <strong>JavaScript </strong>
-									y <strong>Bootstrap</strong>, encargándome del desarrollo de la interfaz, la 
-									maquetación responsiva y la implementación de componentes
-									interactivos, como el carrusel de imágenes.
-								</p>
-								<p class="text-slate-600 pb-6">
-									Además, integré <strong>Decap CMS</strong> para proporcionar una
-									interfaz de administración que permitiera gestionar
-									y actualizar los archivos de descarga sin modificar
-									el código fuente, facilitando el mantenimiento y
-									la publicación de contenido por parte de la editorial.
-								</p>
-								<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-2 md:mx-6">
-									<div class="rounded-md overflow-hidden shadow-md border-2 border-slate-200 transition-all hover:scale-102">
-										<Image
-											src={vbp_pc}
-											alt="Página de editorial en PC"
-											class="w-full h-62 md:h-65 object-cover"
-										/>
-									</div>
-									<div class="rounded-md overflow-hidden shadow-md border-2 border-slate-200 transition-all hover:scale-102">
-										<Image
-											src={vbp_mobile}
-											alt="Página de editorial en teléfonos"
-											class="w-full h-62 md:h-65 object-cover"
-										/>
-									</div>
-								</div>
-							</div>
-							<div class="swiper-slide px-8 md:px-14 py-4">
-								<h3 class="font-semibold text-xm text-slate-900">
-									Navi Natubelleza
-								</h3>
-								<p class="text-slate-600 pb-2">
-									Participé en un proyecto de migración de una aplicación 
-									web como parte del equipo de desarrollo de <a class="font-bold text-slate-700 transition-all hover:text-slate-900" target="_blank" rel="noopener noreferrer" href="https://juarextech.com/">Juarex Technology Group</a>, utilizando <strong>Laravel</strong>, <strong> PHP</strong>, <strong> MySQL</strong>, <strong> Blade</strong> y 
-									<strong> Tailwind CSS</strong>. Colaboré 
-									en el diseño e implementación de parte del esquema 
-									de la base de datos, el desarrollo de módulos <strong> CRUD </strong> 
-									para el panel de administración y la integración de 
-									funcionalidades siguiendo la arquitectura <strong> MVC </strong> de Laravel. 
-								</p>
-								<p class="text-slate-600 pb-6">
-									Además, participé en la migración de interfaces
-									desarrolladas en <strong>React</strong> hacia <strong> Blade</strong>, manteniendo
-									la estructura, el comportamiento y la fidelidad
-									visual de la aplicación original, a la vez que
-									se optimizó su integración con el backend y la
-									consistencia del sistema.
-								</p>
-								<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-2 md:mx-6">
-									<div class="rounded-md overflow-hidden shadow-md border-2 border-slate-200 transition-all hover:scale-102">
-										<Image
-											src={ntb_pc}
-											alt="Página de Navi Natubelleza versión escritorio"
-											class="w-full h-62 md:h-65 object-cover"/>
-									</div>
-									<div class="rounded-md overflow-hidden shadow-md border-2 border-slate-200 transition-all hover:scale-102">
-										<Image
-											src={ntb_mobile}
-											alt="Página de Navi Natubelleza versión móvil"
-											class="w-full h-62 md:h-65 object-cover"/>
-									</div>
-								</div>
-							</div>
+            {proyectos.map((proyecto: any) => (
+    <div class="swiper-slide px-8 md:px-14 py-4">
+        
+        <!-- Cabecera: Título a la izquierda y Tipo de proyecto a la derecha -->
+        <div class="flex justify-between items-start gap-4 mb-1">
+            <h3 class="font-semibold text-lg text-slate-900">
+                {proyecto.data.title}
+            </h3>
+            <span class="text-xs font-semibold bg-slate-300 text-slate-700 px-3 py-1 rounded-full whitespace-nowrap">
+                {proyecto.data.type}
+            </span>
+        </div>
 
-						</div>
-						<div class="swiper-pagination"></div>
-						<div class="swiper-button-prev"></div>
-						<div class="swiper-button-next"></div>
-					</div>
+        <!-- Fecha con su tonalidad actual -->
+        <p class="text-xs text-slate-400 pb-3">
+            Fecha: {proyecto.data.date}
+        </p>
+
+        <!-- Descripción en formato de texto o Markdown -->
+        <div class="text-slate-600 pb-6 space-y-2 text-sm text-justify leading-relaxed">
+            <p class="whitespace-pre-line" set:html={marked.parse(proyecto.data.description)}> </p>
+        </div>
+
+        <!-- Contenedor de Mockups / Imágenes corregido -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mx-2 md:mx-6">
+            {proyecto.data.images && proyecto.data.images.map((imgObj: any) => {
+                const imgPath = typeof imgObj === 'object' ? imgObj.image : imgObj;
+                return (
+                    <div class="rounded-md overflow-hidden shadow-md border-2 border-slate-200 transition-all hover:scale-102 bg-white hover:shadow-xl">
+                        <img
+                            src={imgPath}
+                            alt={`Mockup de ${proyecto.data.title}`}
+                            class="w-full h-62 md:h-65 object-cover"
+                        />
+                    </div>
+                );
+            })}
+        </div>
+
+    </div>
+))}
+
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
 				</div>
 				<script>
 					import Swiper from 'swiper';
